@@ -114,9 +114,12 @@ function transformPropertyData(rawData: any): any[] {
 
 export async function POST(request: NextRequest) {
   try {
-   // Rate limiting - get IP from headers in Vercel environment
-const ip = request.headers.get('x-forwarded-for') || 
-          request.headers.get('x-real-ip') || 
+  // Rate limiting - get IP from headers (Vercel compatible)
+  const forwarded = request.headers.get('x-forwarded-for');
+  const ip = forwarded ? forwarded.split(',')[0].trim() : 
+            request.headers.get('x-real-ip') || 
+            'unknown';
+  if (!checkRateLimit(ip)) {
           'unknown';
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
