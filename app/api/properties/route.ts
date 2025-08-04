@@ -114,8 +114,10 @@ function transformPropertyData(rawData: any): any[] {
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting
-    const ip = request.ip || 'unknown';
+   // Rate limiting - get IP from headers in Vercel environment
+const ip = request.headers.get('x-forwarded-for') || 
+          request.headers.get('x-real-ip') || 
+          'unknown';
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
         { error: 'Rate limit exceeded. Please try again later.' },
