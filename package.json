@@ -2,6 +2,7 @@
   "name": "propindex-production",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Production-ready AI property tool for estate agents",
   "scripts": {
     "build": "next build",
@@ -40,6 +41,6 @@
     "typescript": "^5.0.0"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   }
 }
