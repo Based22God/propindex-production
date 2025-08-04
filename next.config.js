@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ['zod'],
+  },
   images: {
     domains: [
       'images.unsplash.com', 
@@ -8,10 +11,6 @@ const nextConfig = {
     ],
     unoptimized: true,
     formats: ['image/webp', 'image/avif'],
-  },
-  experimental: {
-    optimizeCss: true,
-    serverComponentsExternalPackages: ['zod'],
   },
   compress: true,
   poweredByHeader: false,
@@ -30,8 +29,8 @@ const nextConfig = {
           { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization' },
         ],
       },
-    ]
+    ];
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
